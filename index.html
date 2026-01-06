@@ -10,26 +10,29 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif !important;
         }
         body {
-            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
             color: #333;
             min-width: 320px;
             background: linear-gradient(135deg, #4da8ff 0%, #3399ff 50%, #1a8cff 100%);
             background-attachment: fixed;
-            /* Центрируем контент и ограничиваем растягивание */
             display: flex;
             justify-content: center;
+            align-items: flex-start;
             min-height: 100vh;
+            padding: 0;
         }
 
-        /* Fixed width container - ЕЩЕ УЖЕ */
+        /* Main container */
         .main-container {
-            width: 780px; /* Было 863px, стало 780px (еще уже) */
+            width: 780px;
             max-width: 100%;
             margin: 0 auto;
-            /* Не даем растягиваться больше */
-            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Banner */
@@ -41,19 +44,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #59B0EE; /* Изменен цвет фона на #59B0EE */
+            background: #59B0EE;
         }
         .banner img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             display: block;
-            max-width: 100%; /* Не растягиваем картинку */
+            max-width: 100%;
         }
 
         /* Navigation menu */
         .nav-menu {
-            background-color: #78B8FE; /* Изменен цвет навигационного меню на #78B8FE */
+            background-color: #78B8FE;
             padding: 0;
             border: 2px solid rgba(0, 0, 0, 0.15);
             border-top: none;
@@ -107,13 +110,14 @@
             color: #333;
             text-decoration: none;
             font-weight: bold;
-            padding: 0 12px; /* Уменьшил padding для узкого меню */
+            padding: 0 12px;
             display: flex;
             align-items: center;
             height: 100%;
-            font-size: 13px; /* Чуть меньше шрифт */
+            font-size: 13px;
             white-space: nowrap;
             transition: all 0.2s ease;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
         }
         
         .nav-left a {
@@ -139,36 +143,40 @@
             margin-bottom: 0;
             font-weight: bold;
             width: 100%;
-            font-size: 13px; /* Чуть меньше */
+            font-size: 13px;
             height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #333;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
         }
 
-        /* Main content box - уже */
+        /* Main content box */
         .content-box {
             background-color: rgba(255, 255, 255, 0.98);
-            padding: 25px; /* Уменьшил padding */
+            padding: 25px;
             border: 2px solid rgba(0, 0, 0, 0.1);
             border-top: none;
             min-height: 300px;
             margin-top: 0;
             width: 100%;
-            min-width: 730px; /* 780px - padding (25px*2) = 730px */
+            min-width: 730px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
         }
 
         .content-box h2 {
-            font-size: 26px; /* Чуть меньше */
+            font-size: 26px;
             margin-bottom: 12px;
             color: #3399ff;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
         }
         
         .content-box p {
-            font-size: 15px; /* Чуть меньше */
+            font-size: 15px;
             line-height: 1.5;
             margin-bottom: 10px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
         }
         
         .content-box ul {
@@ -179,11 +187,12 @@
         .content-box li {
             margin-bottom: 6px;
             font-size: 15px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
         }
 
         /* Footer */
         .footer {
-            height: 40px; /* Чуть меньше */
+            height: 40px;
             margin-top: 15px;
             display: flex;
             align-items: center;
@@ -191,6 +200,247 @@
             color: white;
             font-size: 13px;
             opacity: 0.9;
+            font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* ==================== */
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
+        /* ==================== */
+        
+        /* На узких экранах - все пропорционально уменьшается и центрируется */
+        @media (max-width: 920px) {
+            body {
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                min-height: 100vh;
+            }
+            
+            .main-container {
+                width: 100%;
+                max-width: 780px;
+                margin: 0 auto;
+                transform: scale(0.95);
+                transform-origin: top center;
+            }
+            
+            .content-box {
+                min-width: 0;
+                overflow-x: hidden;
+                padding: 20px;
+                width: 100%;
+            }
+            
+            .banner, .nav-menu, .alert-bar, .content-box {
+                width: 100%;
+            }
+            
+            .banner {
+                height: 120px;
+                margin-top: 5px;
+            }
+            
+            .alert-bar {
+                font-size: 12px;
+                height: 34px;
+                padding: 6px 0;
+            }
+            
+            .content-box h2 {
+                font-size: 24px;
+            }
+            
+            .content-box p, .content-box li {
+                font-size: 14px;
+            }
+            
+            .footer {
+                font-size: 12px;
+                height: 35px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                transform: scale(0.9);
+                transform-origin: top center;
+            }
+            
+            .banner {
+                height: 110px;
+            }
+            
+            .nav-menu {
+                height: 38px;
+            }
+            
+            .nav-menu a {
+                font-size: 12px;
+                padding: 0 10px;
+            }
+            
+            .alert-bar {
+                font-size: 11px;
+                height: 32px;
+            }
+            
+            .content-box {
+                padding: 18px;
+            }
+            
+            .content-box h2 {
+                font-size: 22px;
+            }
+            
+            .content-box p, .content-box li {
+                font-size: 13px;
+            }
+            
+            .footer {
+                font-size: 11px;
+                height: 32px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .main-container {
+                transform: scale(0.85);
+                transform-origin: top center;
+            }
+            
+            .banner {
+                height: 100px;
+                margin-top: 0;
+            }
+            
+            .nav-menu {
+                height: 36px;
+                flex-direction: row;
+            }
+            
+            .nav-left ul, .nav-right ul {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 0 5px;
+            }
+            
+            .nav-menu a {
+                font-size: 11px;
+                padding: 0 8px;
+            }
+            
+            .alert-bar {
+                font-size: 10px;
+                height: 30px;
+                padding: 5px 0;
+            }
+            
+            .content-box {
+                padding: 15px;
+            }
+            
+            .content-box h2 {
+                font-size: 20px;
+            }
+            
+            .content-box p, .content-box li {
+                font-size: 12px;
+            }
+            
+            .footer {
+                font-size: 10px;
+                height: 30px;
+                margin-top: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-container {
+                transform: scale(0.8);
+                transform-origin: top center;
+                width: 95%;
+            }
+            
+            body {
+                padding: 5px;
+            }
+            
+            .banner {
+                height: 90px;
+            }
+            
+            .nav-menu {
+                height: 34px;
+            }
+            
+            .nav-menu a {
+                font-size: 10px;
+                padding: 0 6px;
+            }
+            
+            .alert-bar {
+                font-size: 9px;
+                height: 28px;
+                padding: 4px 0;
+            }
+            
+            .content-box {
+                padding: 12px;
+            }
+            
+            .content-box h2 {
+                font-size: 18px;
+            }
+            
+            .content-box p, .content-box li {
+                font-size: 11px;
+            }
+            
+            .footer {
+                font-size: 9px;
+                height: 28px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .main-container {
+                transform: scale(0.75);
+                transform-origin: top center;
+            }
+            
+            .banner {
+                height: 80px;
+            }
+            
+            .nav-menu {
+                height: 32px;
+            }
+            
+            .nav-menu a {
+                font-size: 9px;
+                padding: 0 5px;
+            }
+            
+            .alert-bar {
+                font-size: 8px;
+                height: 26px;
+            }
+            
+            .content-box h2 {
+                font-size: 16px;
+            }
+            
+            .content-box p, .content-box li {
+                font-size: 10px;
+            }
+            
+            .footer {
+                font-size: 8px;
+                height: 26px;
+            }
         }
 
         /* На больших экранах - фиксированный размер, не растягивается */
@@ -200,125 +450,8 @@
             }
             
             .main-container {
-                width: 780px; /* Фиксированная ширина */
+                width: 780px;
                 margin: 0;
-            }
-        }
-
-        /* На узких экранах */
-        @media (max-width: 920px) {
-            .main-container {
-                width: 100%;
-                padding: 0 15px;
-            }
-            
-            .content-box {
-                min-width: 0;
-                overflow-x: hidden;
-                padding: 20px;
-            }
-            
-            .banner, .nav-menu, .alert-bar, .content-box {
-                width: 100%;
-            }
-            
-            /* Адаптация меню для мобильных */
-            .nav-menu {
-                flex-direction: column;
-                height: auto;
-                min-height: 80px;
-            }
-            
-            .nav-left, .nav-right {
-                width: 100%;
-                justify-content: center;
-                height: 40px;
-            }
-            
-            .nav-left li:not(:last-child)::after,
-            .nav-right li:not(:last-child)::after {
-                right: -5px;
-            }
-            
-            .nav-menu a {
-                padding: 0 10px;
-                font-size: 12px;
-            }
-            
-            @media (max-width: 600px) {
-                .nav-menu {
-                    height: auto;
-                    min-height: 120px;
-                }
-                
-                .nav-left ul, .nav-right ul {
-                    flex-wrap: wrap;
-                    justify-content: center;
-                }
-                
-                .nav-left li, .nav-right li {
-                    margin: 3px 6px;
-                }
-                
-                /* Убираем палочки на очень узких экранах */
-                .nav-left li::after,
-                .nav-right li::after {
-                    display: none;
-                }
-                
-                .nav-menu a {
-                    padding: 4px 8px;
-                    font-size: 11px;
-                }
-                
-                .banner {
-                    height: 110px;
-                }
-                
-                .content-box {
-                    padding: 15px;
-                }
-                
-                .content-box h2 {
-                    font-size: 22px;
-                }
-                
-                .content-box p, .content-box li {
-                    font-size: 14px;
-                }
-                
-                .alert-bar {
-                    font-size: 12px;
-                    padding: 6px 5px;
-                    height: 34px;
-                }
-            }
-            
-            @media (max-width: 400px) {
-                .nav-left ul, .nav-right ul {
-                    flex-direction: column;
-                    align-items: center;
-                }
-                
-                .nav-left li, .nav-right li {
-                    margin: 2px 0;
-                }
-                
-                .alert-bar {
-                    font-size: 11px;
-                    height: auto;
-                    min-height: 32px;
-                    padding: 5px 4px;
-                }
-                
-                .banner {
-                    height: 90px;
-                }
-                
-                .footer {
-                    font-size: 11px;
-                    height: 30px;
-                }
             }
         }
     </style>
@@ -327,7 +460,6 @@
     <div class="main-container">
         <!-- Banner -->
         <div class="banner">
-            <!-- Теперь используется banner.png с фоном #59B0EE -->
             <img src="banner.png" alt="Brick Space Banner">
         </div>
 
