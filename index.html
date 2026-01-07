@@ -1,148 +1,462 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=780, initial-scale=1.0">
-<title>Brick Space</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brick Space</title>
+    <style>
+        /* Reset margins */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            color: #333;
+            min-width: 320px;
+            background: linear-gradient(135deg, #4da8ff 0%, #3399ff 50%, #1a8cff 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
 
-<link rel="stylesheet" href="css/fonts.css">
+        /* Fixed width container */
+        .main-container {
+            width: 780px;
+            max-width: 100%;
+            margin: 0 auto;
+            flex: 0 0 auto;
+        }
 
-<style>
-html, body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #4da8ff 0%, #3399ff 50%, #1a8cff 100%);
-    background-attachment: fixed;
-}
+        /* Banner */
+        .banner {
+            width: 100%;
+            height: 138px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            max-width: 100%;
+        }
 
-* {
-    box-sizing: border-box;
-    font-family: 'CustomComic', 'Comic Sans MS', cursive, sans-serif;
-}
+        /* Navigation menu */
+        .nav-menu {
+            background-color: #8bc7ff;
+            padding: 0;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-top: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-menu li {
+            margin: 0;
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-left li:not(:last-child)::after,
+        .nav-right li:not(:last-child)::after {
+            content: "|";
+            position: absolute;
+            right: -2px;
+            color: rgba(0, 0, 0, 0.3);
+            font-weight: normal;
+        }
+        
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            font-size: 13px;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-left a {
+            color: #333;
+        }
+        
+        .nav-right a {
+            color: #0066cc;
+        }
+        
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
 
-body {
-    min-width: 780px;
-    overflow-x: auto;
-    display: flex;
-    justify-content: center;
-}
+        /* Alert bar */
+        .alert-bar {
+            background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
+            padding: 8px 0;
+            text-align: center;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-top: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-weight: bold;
+            width: 100%;
+            font-size: 13px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
 
-.main-container {
-    width: 780px;
-    background: #ffffff;
-    border: 2px solid rgba(0,0,0,0.15);
-    margin: 20px 0;
-}
+        /* Main content box */
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 25px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-top: none;
+            min-height: 300px;
+            margin-top: 0;
+            width: 100%;
+            min-width: 730px;
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
 
-.banner {
-    height: 138px;
-    background: #59B0EE;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        /* Left column with text */
+        .text-content {
+            flex: 1;
+            min-width: 0;
+        }
 
-.banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+        .content-box h2 {
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: #3399ff;
+        }
+        
+        .content-box p {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        
+        .content-box ul {
+            margin-left: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .content-box li {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
 
-.nav-menu {
-    height: 40px;
-    background: #78B8FE;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 6px;
-}
+        /* ============ RIGHT COLUMN WITH VIDEO ============ */
+        .video-column {
+            width: 280px;
+            height: 280px;
+            flex-shrink: 0;
+        }
+        
+        .video-container {
+            width: 100%;
+            height: 100%;
+            background: black;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-.nav-menu ul {
-    list-style: none;
-    display: flex;
-    height: 100%;
-}
+        /* Footer */
+        .footer {
+            height: 40px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 13px;
+            opacity: 0.9;
+        }
 
-.nav-menu li {
-    display: flex;
-    align-items: center;
-}
+        /* Large screens */
+        @media (min-width: 1000px) {
+            body {
+                padding: 20px 0;
+            }
+            
+            .main-container {
+                width: 780px;
+                margin: 0;
+            }
+        }
 
-.nav-menu li:not(:last-child)::after {
-    content: "|";
-    margin: 0 6px;
-    color: white;
-}
-
-.nav-menu a {
-    font-size: 13px;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-.alert-bar {
-    height: 36px;
-    background: linear-gradient(90deg, #ffd966, #ffcc33);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 13px;
-}
-
-.content-box {
-    padding: 25px;
-}
-
-.footer {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    opacity: 0.8;
-}
-
-@media (max-width: 800px) {
-    body { zoom: 0.8; }
-}
-</style>
+        /* Narrow screens */
+        @media (max-width: 920px) {
+            .main-container {
+                width: 100%;
+                padding: 0 15px;
+            }
+            
+            .content-box {
+                min-width: 0;
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .banner, .nav-menu, .alert-bar, .content-box {
+                width: 100%;
+            }
+            
+            .video-column {
+                width: 100%;
+                height: 280px;
+                margin-top: 20px;
+                order: 2;
+            }
+            
+            .text-content {
+                order: 1;
+            }
+            
+            /* Mobile menu adaptation */
+            .nav-menu {
+                flex-direction: column;
+                height: auto;
+                min-height: 80px;
+            }
+            
+            .nav-left, .nav-right {
+                width: 100%;
+                justify-content: center;
+                height: 40px;
+            }
+            
+            .nav-left li:not(:last-child)::after,
+            .nav-right li:not(:last-child)::after {
+                right: -5px;
+            }
+            
+            .nav-menu a {
+                padding: 0 10px;
+                font-size: 12px;
+            }
+            
+            @media (max-width: 600px) {
+                .nav-menu {
+                    height: auto;
+                    min-height: 120px;
+                }
+                
+                .nav-left ul, .nav-right ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                
+                .nav-left li, .nav-right li {
+                    margin: 3px 6px;
+                }
+                
+                /* Remove bars on very narrow screens */
+                .nav-left li::after,
+                .nav-right li::after {
+                    display: none;
+                }
+                
+                .nav-menu a {
+                    padding: 4px 8px;
+                    font-size: 11px;
+                }
+                
+                .banner {
+                    height: 110px;
+                }
+                
+                .content-box {
+                    padding: 15px;
+                }
+                
+                .content-box h2 {
+                    font-size: 22px;
+                }
+                
+                .content-box p, .content-box li {
+                    font-size: 14px;
+                }
+                
+                .alert-bar {
+                    font-size: 12px;
+                    padding: 6px 5px;
+                    height: 34px;
+                }
+                
+                .video-column {
+                    height: 250px;
+                }
+            }
+            
+            @media (max-width: 400px) {
+                .nav-left ul, .nav-right ul {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                
+                .nav-left li, .nav-right li {
+                    margin: 2px 0;
+                }
+                
+                .alert-bar {
+                    font-size: 11px;
+                    height: auto;
+                    min-height: 32px;
+                    padding: 5px 4px;
+                }
+                
+                .banner {
+                    height: 90px;
+                }
+                
+                .footer {
+                    font-size: 11px;
+                    height: 30px;
+                }
+                
+                .video-column {
+                    height: 220px;
+                }
+            }
+        }
+    </style>
 </head>
-
 <body>
-<div class="main-container">
+    <div class="main-container">
+        <!-- Banner -->
+        <div class="banner">
+            <img src="https://via.placeholder.com/780x138/ffffff/ffffff?text=BRICK+SPACE+BANNER" alt="Brick Space Banner">
+        </div>
 
-<div class="banner">
-<img src="banner.png" alt="Brick Space">
-</div>
+        <!-- Navigation menu -->
+        <nav class="nav-menu">
+            <div class="nav-left">
+                <ul>
+                    <li><a href="#">Play</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Clans</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Membership</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-right">
+                <ul>
+                    <li><a href="#">Log in</a></li>
+                    <li><a href="#">Sign up</a></li>
+                </ul>
+            </div>
+        </nav>
 
-<nav class="nav-menu">
-<ul>
-<li><a href="#">Play</a></li>
-<li><a href="#">Shop</a></li>
-<li><a href="#">Clans</a></li>
-<li><a href="#">Search</a></li>
-<li><a href="#">Forum</a></li>
-<li><a href="#">Membership</a></li>
-</ul>
-<ul>
-<li><a href="#">Log in</a></li>
-<li><a href="#">Sign up</a></li>
-</ul>
-</nav>
+        <!-- Alert bar -->
+        <div class="alert-bar">
+            ⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform
+        </div>
 
-<div class="alert-bar">⚡ WELCOME TO BRICK SPACE BETA!</div>
+        <!-- Main content box -->
+        <div class="content-box">
+            <!-- Left column with text -->
+            <div class="text-content">
+                <h2>Welcome to Brick Space!</h2>
+                <p>Brick Space is a social platform where people can play together, build amazing structures, watch each other's creations, customize avatars, and have fun in a block-based universe!</p>
+                
+                <p><strong>What You Can Do:</strong></p>
+                <ul>
+                    <li><strong>Play Together:</strong> Join multiplayer games with friends and other players</li>
+                    <li><strong>Build from Blocks:</strong> Create amazing structures using different types of blocks</li>
+                    <li><strong>Watch Creations:</strong> See what other players have built and get inspired</li>
+                    <li><strong>Customize Avatar:</strong> Change your character's appearance with unique skins</li>
+                    <li><strong>Explore Worlds:</strong> Discover user-created worlds and adventures</li>
+                    <li><strong>Share Creations:</strong> Show off your builds to the community</li>
+                </ul>
+                
+                <p>Start building and playing today! Join our growing community of creative builders!</p>
+            </div>
+            
+            <!-- Right column ONLY with video -->
+            <div class="video-column">
+                <div class="video-container">
+                    <video id="myVideo" autoplay muted loop controls>
+                        <source src="w.mp4" type="video/mp4">
+                        Your browser does not support video
+                    </video>
+                </div>
+            </div>
+        </div>
 
-<div class="content-box">
-<h2>Welcome to Brick Space!</h2>
-<p>Background is now smooth, no block artifacts.</p>
-</div>
-
-<div class="footer">© 2024 Brick Space</div>
-
-</div>
+        <div class="footer">
+            © 2024 Brick Space | Social Building Platform | Beta Testing
+        </div>
+    </div>
+    
+    <script>
+        const video = document.getElementById('myVideo');
+        
+        // Autoplay
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        
+        // Click video to pause/play
+        video.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    </script>
 </body>
 </html>
