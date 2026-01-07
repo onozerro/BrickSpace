@@ -15,7 +15,6 @@
             font-family: "Comic Sans MS", cursive, sans-serif;
             color: #333;
             min-width: 320px;
-            /* Градиент будет установлен через JS из конфига */
             background: linear-gradient(135deg, #4da8ff 0%, #3399ff 50%, #1a8cff 100%);
             background-attachment: fixed;
             display: flex;
@@ -52,7 +51,6 @@
 
         /* Navigation menu */
         .nav-menu {
-            /* Цвет будет установлен через JS из конфига */
             background-color: #8bc7ff;
             padding: 0;
             border: 2px solid rgba(0, 0, 0, 0.15);
@@ -121,7 +119,6 @@
         }
         
         .nav-right a {
-            /* Цвет будет установлен через JS из конфига */
             color: #0066cc;
         }
         
@@ -131,7 +128,6 @@
 
         /* Alert bar */
         .alert-bar {
-            /* Градиент будет установлен через JS из конфига */
             background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
             padding: 8px 0;
             text-align: center;
@@ -151,7 +147,6 @@
 
         /* Main content box */
         .content-box {
-            /* Цвет будет установлен через JS из конфига */
             background-color: rgba(255, 255, 255, 0.98);
             padding: 25px;
             border: 2px solid rgba(0, 0, 0, 0.1);
@@ -174,7 +169,6 @@
         .content-box h2 {
             font-size: 26px;
             margin-bottom: 12px;
-            /* Цвет будет установлен через JS из конфига */
             color: #3399ff;
         }
         
@@ -205,10 +199,9 @@
             width: 100%;
             height: 100%;
             background: black;
-            /* border-radius и box-shadow будут установлены через JS из конфига */
-            border-radius: 8px;
+            border-radius: 0; /* Без скругленных углов */
             overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            box-shadow: none; /* Без тени */
         }
         
         .video-container video {
@@ -225,7 +218,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Цвет будет установлен через JS из конфига */
             color: white;
             font-size: 13px;
             opacity: 0.9;
@@ -417,32 +409,83 @@
         <div id="footer-container"></div>
     </div>
     
-    <script src="config.js"></script>
     <script>
+        // Конфигурация прямо в HTML для простоты
+        const CONFIG = {
+            // Цвета сайта
+            colors: {
+                primaryGradient: ['#4da8ff', '#3399ff', '#1a8cff'],
+                navBackground: '#8bc7ff',
+                alertBackground: ['#ffd966', '#ffcc33'],
+                contentBackground: 'rgba(255, 255, 255, 0.98)',
+                textColor: '#333',
+                linkColor: '#0066cc',
+                titleColor: '#3399ff',
+                footerColor: 'white'
+            },
+            
+            // Тексты
+            alertText: '⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform',
+            footerText: '© 2024 Brick Space | Social Building Platform | Beta Testing'
+        };
+
         // Функция для загрузки HTML компонентов
         async function loadComponent(id, file) {
             try {
                 const response = await fetch(file);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${file}: ${response.status}`);
+                }
                 const html = await response.text();
                 document.getElementById(id).innerHTML = html;
-                
-                // После загрузки header применяем конфигурацию
-                if (file === 'header.html') {
-                    applyConfig();
-                }
+                return true;
             } catch (error) {
                 console.error(`Error loading ${file}:`, error);
+                // Создаем fallback контент если файл не загрузился
+                if (file === 'header.html') {
+                    document.getElementById(id).innerHTML = `
+                        <div class="banner">
+                            <img src="bb.png" alt="Brick Space Banner">
+                        </div>
+                        <nav class="nav-menu">
+                            <div class="nav-left">
+                                <ul>
+                                    <li><a href="#">Play</a></li>
+                                    <li><a href="#">Shop</a></li>
+                                    <li><a href="#">Clans</a></li>
+                                    <li><a href="#">Search</a></li>
+                                    <li><a href="#">Forum</a></li>
+                                    <li><a href="#">Membership</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-right">
+                                <ul>
+                                    <li><a href="#">Log in</a></li>
+                                    <li><a href="#">Sign up</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="alert-bar" id="alertBar">${CONFIG.alertText}</div>
+                    `;
+                } else if (file === 'footer.html') {
+                    document.getElementById(id).innerHTML = `<div class="footer" id="footer">${CONFIG.footerText}</div>`;
+                }
+                return false;
             }
         }
 
         // Функция применения конфигурации
         function applyConfig() {
+            console.log('Applying configuration...');
+            
             // Применяем цвета из конфига
             document.body.style.background = `linear-gradient(135deg, ${CONFIG.colors.primaryGradient[0]} 0%, ${CONFIG.colors.primaryGradient[1]} 50%, ${CONFIG.colors.primaryGradient[2]} 100%)`;
             
             // Навигация
             const navMenu = document.querySelector('.nav-menu');
-            if (navMenu) navMenu.style.backgroundColor = CONFIG.colors.navBackground;
+            if (navMenu) {
+                navMenu.style.backgroundColor = CONFIG.colors.navBackground;
+            }
             
             // Ссылки в правой части навигации
             const navRightLinks = document.querySelectorAll('.nav-right a');
@@ -460,17 +503,14 @@
             
             // Контент бокс
             const contentBox = document.querySelector('.content-box');
-            if (contentBox) contentBox.style.backgroundColor = CONFIG.colors.contentBackground;
+            if (contentBox) {
+                contentBox.style.backgroundColor = CONFIG.colors.contentBackground;
+            }
             
             // Заголовок
             const title = document.querySelector('.content-box h2');
-            if (title) title.style.color = CONFIG.colors.titleColor;
-            
-            // Видео контейнер
-            const videoContainer = document.querySelector('.video-container');
-            if (videoContainer) {
-                videoContainer.style.borderRadius = CONFIG.videoStyle.borderRadius;
-                videoContainer.style.boxShadow = CONFIG.videoStyle.boxShadow;
+            if (title) {
+                title.style.color = CONFIG.colors.titleColor;
             }
             
             // Футер
@@ -478,6 +518,7 @@
             if (footer) {
                 footer.style.color = CONFIG.colors.footerColor;
                 footer.textContent = CONFIG.footerText;
+                console.log('Footer text set:', CONFIG.footerText);
             }
             
             // Применяем основной цвет текста
@@ -502,15 +543,29 @@
             }
         }
 
-        // Загрузка всех компонентов при загрузке страницы
-        document.addEventListener('DOMContentLoaded', async () => {
+        // Основная функция инициализации
+        async function initializePage() {
+            console.log('Initializing page...');
+            
             // Загружаем header и footer
             await loadComponent('header-container', 'header.html');
             await loadComponent('footer-container', 'footer.html');
             
-            // Настраиваем видео
-            setupVideo();
-        });
+            // Даем время на рендеринг DOM
+            setTimeout(() => {
+                // Применяем конфигурацию
+                applyConfig();
+                
+                // Настраиваем видео
+                setupVideo();
+                
+                console.log('Page initialized successfully');
+            }, 100);
+        }
+
+        // Запускаем инициализацию при загрузке страницы
+        document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
+</html>
 </html>
