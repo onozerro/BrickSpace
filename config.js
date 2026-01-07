@@ -2,19 +2,19 @@
 const CONFIG = {
     // Цвета сайта
     colors: {
-        // Градиент фона сайта (можно менять)
+        // Градиент фона сайта
         primaryGradient: ['#4da8ff', '#3399ff', '#1a8cff'],
         
-        // Цвета алерта (можно менять)
+        // Цвета алерта
         alertBackground: ['#ffd966', '#ffcc33'],
         
-        // Цвет текста футера (можно менять)
+        // Цвет текста футера
         footerColor: 'white'
     },
     
-    // Текст алерта (можно менять)
+    // Текст алерта
     alertText: '⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform',
     
-    // Текст футера (можно менять)
-    footerText: '© 2026 Brick Space | Social Building Platform | Beta Testing'
+    // Текст футера
+    footerText: '© 2024 Brick Space | Social Building Platform | Beta Testing'
 };
