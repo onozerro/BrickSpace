@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play - Brick Space</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            color: #333;
+            min-width: 320px;
+            background: linear-gradient(135deg, #4da8ff 0%, #3399ff 50%, #1a8cff 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .main-container {
+            width: 780px;
+            max-width: 100%;
+            margin: 0 auto;
+            flex: 0 0 auto;
+        }
+        .banner {
+            width: 100%;
+            height: 138px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            max-width: 100%;
+        }
+        .nav-menu {
+            background-color: #8bc7ff;
+            padding: 0;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-top: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+        .nav-menu li {
+            margin: 0;
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .nav-left li:not(:last-child)::after,
+        .nav-right li:not(:last-child)::after {
+            content: "|";
+            position: absolute;
+            right: -2px;
+            color: rgba(0, 0, 0, 0.3);
+            font-weight: normal;
+        }
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .nav-left a {
+            color: #333;
+        }
+        .nav-right a {
+            color: #0066cc;
+        }
+        .nav-menu a:hover {
+            cursor: pointer;
+        }
+        .alert-bar {
+            background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
+            padding: 8px 0;
+            text-align: center;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-top: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-weight: bold;
+            width: 100%;
+            font-size: 13px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 25px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-top: none;
+            min-height: 300px;
+            margin-top: 0;
+            width: 100%;
+            min-width: 730px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .center-message {
+            text-align: center;
+            max-width: 600px;
+        }
+        .center-message h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #3399ff;
+        }
+        .center-message p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .footer {
+            height: 40px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        @media (max-width: 920px) {
+            .main-container {
+                width: 100%;
+                padding: 0 15px;
+            }
+            .content-box {
+                min-width: 0;
+                padding: 20px;
+            }
+            .nav-menu {
+                flex-direction: column;
+                height: auto;
+                min-height: 80px;
+            }
+            .nav-left, .nav-right {
+                width: 100%;
+                justify-content: center;
+                height: 40px;
+            }
+            .nav-left li:not(:last-child)::after,
+            .nav-right li:not(:last-child)::after {
+                right: -5px;
+            }
+            .nav-menu a {
+                padding: 0 10px;
+                font-size: 12px;
+            }
+            @media (max-width: 600px) {
+                .nav-menu {
+                    height: auto;
+                    min-height: 120px;
+                }
+                .nav-left ul, .nav-right ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .nav-left li, .nav-right li {
+                    margin: 3px 6px;
+                }
+                .nav-left li::after,
+                .nav-right li::after {
+                    display: none;
+                }
+                .nav-menu a {
+                    padding: 4px 8px;
+                    font-size: 11px;
+                }
+                .banner {
+                    height: 110px;
+                }
+                .content-box {
+                    padding: 15px;
+                }
+                .center-message h2 {
+                    font-size: 26px;
+                }
+                .center-message p {
+                    font-size: 16px;
+                }
+                .alert-bar {
+                    font-size: 12px;
+                    padding: 6px 5px;
+                    height: 34px;
+                }
+            }
+            @media (max-width: 400px) {
+                .nav-left ul, .nav-right ul {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .nav-left li, .nav-right li {
+                    margin: 2px 0;
+                }
+                .alert-bar {
+                    font-size: 11px;
+                    height: auto;
+                    min-height: 32px;
+                    padding: 5px 4px;
+                }
+                .banner {
+                    height: 90px;
+                }
+                .footer {
+                    font-size: 11px;
+                    height: 30px;
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="banner">
+            <img src="bb.png" alt="Brick Space Banner">
+        </div>
+        <nav class="nav-menu">
+            <div class="nav-left">
+                <ul>
+                    <li><a href="#" style="background-color: rgba(255, 255, 255, 0.4);">Play</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="#">Clans</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Membership</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <ul>
+                    <li><a href="#">Log in</a></li>
+                    <li><a href="#">Sign up</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="alert-bar">
+            ⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform
+        </div>
+        <div class="content-box">
+            <div class="center-message">
+                <h2>Sorry!</h2>
+                <p>The "Play" section is currently under development.</p>
+                <p>Our website is in early development stage, so it will take some time.</p>
+                <p>Please check back later for updates!</p>
+            </div>
+        </div>
+        <div class="footer">
+            © 2024 Brick Space | Play Section | Under Development
+        </div>
+    </div>
+</body>
+</html>
