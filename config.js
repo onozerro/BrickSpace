@@ -1,10 +1,25 @@
-// config.js - Конфигурация (не используется в статических файлах)
+// config.js - Конфигурация для Brick Space
 const CONFIG = {
+    // Цвета сайта
     colors: {
+        // Градиент фона сайта (можно менять)
         primaryGradient: ['#4da8ff', '#3399ff', '#1a8cff'],
-        alertBackground: ['#ffd966', '#ffcc33']
+        
+        // Цвета алерта (можно менять)
+        alertBackground: ['#ffd966', '#ffcc33'],
+        
+        // Цвет текста футера (можно менять)
+        footerColor: 'white'
     },
     
+    // Текст алерта (можно менять)
     alertText: '⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform',
-    footerText: '© 2026 Brick Space | Social Building Platform | Beta Testing'
+    
+    // Текст футера (можно менять)
+    footerText: '© 2024 Brick Space | Social Building Platform | Beta Testing'
 };
+
+// Экспорт для использования в других файлах
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = CONFIG;
+}
