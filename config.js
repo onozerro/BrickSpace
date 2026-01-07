@@ -4,6 +4,6 @@ const CONFIG = {
         alertBackground: ['#ffd966', '#ffcc33'],
         footerColor: 'white'
     },
-    alertText: '⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform',
+    alertText: 'WELCOME TO BRICK SPACE BETA!',
     footerText: '© 2026 Brick Space | Social Building Platform | Beta Testing'
 };
