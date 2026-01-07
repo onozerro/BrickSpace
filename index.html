@@ -48,7 +48,7 @@
             max-width: 100%;
         }
 
-        /* Navigation menu - ВОЗВРАЩЕНО: белые кнопки при наведении */
+        /* Navigation menu - ПРОСТОЙ ТЕКСТ БЕЗ ЭФФЕКТОВ */
         .nav-menu {
             background-color: #8bc7ff;
             padding: 0;
@@ -75,6 +75,7 @@
             height: 100%;
             padding: 0;
             margin: 0;
+            align-items: center;
         }
         
         .nav-menu li {
@@ -94,7 +95,7 @@
             font-weight: normal;
         }
         
-        /* ВОЗВРАЩЕНО: вся кнопка кликабельна и белеет при наведении */
+        /* Ссылка как простой текст без эффектов */
         .nav-menu a {
             color: #333;
             text-decoration: none;
@@ -105,7 +106,6 @@
             height: 100%;
             font-size: 13px;
             white-space: nowrap;
-            transition: all 0.2s ease;
         }
         
         .nav-left a {
@@ -116,10 +116,9 @@
             color: #0066cc;
         }
         
-        /* ВОЗВРАЩЕНО: белый фон при наведении */
+        /* БЕЗ ЭФФЕКТОВ ПРИ НАВЕДЕНИИ - ТОЛЬКО СТАНДАРТНЫЙ КУРСОР */
         .nav-menu a:hover {
-            background-color: rgba(255, 255, 255, 0.7);
-            color: #333;
+            cursor: pointer;
         }
 
         /* Alert bar */
@@ -363,10 +362,38 @@
 </head>
 <body>
     <div class="main-container">
-        <!-- Header будет загружен здесь -->
-        <div id="header-container"></div>
+        <!-- Header -->
+        <div class="banner">
+            <img src="bb.png" alt="Brick Space Banner">
+        </div>
 
-        <!-- Main content box -->
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <div class="nav-left">
+                <ul>
+                    <li><a href="#">Play</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="#">Clans</a></li>
+                    <li><a href="#">Search</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Membership</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-right">
+                <ul>
+                    <li><a href="#">Log in</a></li>
+                    <li><a href="#">Sign up</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Alert bar - данные из конфига -->
+        <div class="alert-bar" id="alertBar">
+            <!-- Текст будет заменен из конфига -->
+        </div>
+
+        <!-- Main content -->
         <div class="content-box">
             <div class="text-content">
                 <h2>Welcome to Brick Space!</h2>
@@ -395,60 +422,23 @@
             </div>
         </div>
 
-        <!-- Footer будет загружен здесь -->
-        <div id="footer-container"></div>
+        <!-- Footer - данные из конфига -->
+        <div class="footer" id="footer">
+            <!-- Текст будет заменен из конфига -->
+        </div>
     </div>
     
     <script src="config.js"></script>
     <script>
-        // Функция для загрузки HTML компонентов
-        async function loadComponent(id, file) {
-            try {
-                const response = await fetch(file);
-                if (!response.ok) {
-                    throw new Error(`Failed to load ${file}: ${response.status}`);
-                }
-                const html = await response.text();
-                document.getElementById(id).innerHTML = html;
-                return true;
-            } catch (error) {
-                console.error(`Error loading ${file}:`, error);
-                // Fallback контент если файл не загрузился
-                if (file === 'header.html') {
-                    document.getElementById(id).innerHTML = `
-                        <div class="banner">
-                            <img src="bb.png" alt="Brick Space Banner">
-                        </div>
-                        <nav class="nav-menu">
-                            <div class="nav-left">
-                                <ul>
-                                    <li><a href="#" style="background-color: rgba(255, 255, 255, 0.7);">Play</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                    <li><a href="#">Clans</a></li>
-                                    <li><a href="#">Search</a></li>
-                                    <li><a href="#">Forum</a></li>
-                                    <li><a href="#">Membership</a></li>
-                                </ul>
-                            </div>
-                            <div class="nav-right">
-                                <ul>
-                                    <li><a href="#">Log in</a></li>
-                                    <li><a href="#">Sign up</a></li>
-                                </ul>
-                            </div>
-                        </nav>
-                        <div class="alert-bar" id="alertBar">${CONFIG.alertText}</div>
-                    `;
-                } else if (file === 'footer.html') {
-                    document.getElementById(id).innerHTML = `<div class="footer" id="footer">${CONFIG.footerText}</div>`;
-                }
-                return false;
-            }
-        }
-
-        // Функция применения конфигурации из config.js
+        // Функция для загрузки конфигурации и применения настроек
         function applyConfig() {
-            console.log('Applying configuration from config.js...');
+            console.log('Loading configuration from config.js...');
+            
+            // Проверяем, загружен ли конфиг
+            if (typeof CONFIG === 'undefined') {
+                console.error('Config.js not loaded!');
+                return;
+            }
             
             // Применяем фоновый градиент из конфига
             if (CONFIG.colors && CONFIG.colors.primaryGradient) {
@@ -493,23 +483,16 @@
         }
 
         // Основная функция инициализации
-        async function initializePage() {
-            console.log('Initializing page with config...');
+        function initializePage() {
+            console.log('Initializing page...');
             
-            // Загружаем header и footer
-            await loadComponent('header-container', 'header.html');
-            await loadComponent('footer-container', 'footer.html');
+            // Применяем конфигурацию
+            applyConfig();
             
-            // Даем время на рендеринг DOM
-            setTimeout(() => {
-                // Применяем конфигурацию
-                applyConfig();
-                
-                // Настраиваем видео
-                setupVideo();
-                
-                console.log('Page initialized successfully with config.js');
-            }, 100);
+            // Настраиваем видео
+            setupVideo();
+            
+            console.log('Page initialized successfully');
         }
 
         // Запускаем инициализацию при загрузке страницы
