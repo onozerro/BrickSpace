@@ -14,7 +14,7 @@ const CONFIG = {
     
     // Тексты
     alertText: '⚡ WELCOME TO BRICK SPACE BETA Creative building platform',
-    footerText: '© 2024 Brick Space | Social Building Platform | Beta Testing',
+    footerText: '© 2026 Brick Space | Social Building Platform | Beta Testing',
     
     // Стиль видео
     videoStyle: {
