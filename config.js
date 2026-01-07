@@ -13,10 +13,10 @@ const CONFIG = {
     },
     
     // Текст алерта (можно менять)
-    alertText: '⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform',
+    alertText: '⚡ WELCOME TO BRICK SPACE BETCreative building platform',
     
     // Текст футера (можно менять)
-    footerText: '© 2024 Brick Space | Social Building Platform | Beta Testing'
+    footerText: '© 2026 Brick Space | Social Building Platform | Beta Testing'
 };
 
 // Экспорт для использования в других файлах
