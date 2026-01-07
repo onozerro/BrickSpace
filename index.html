@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brick Space</title>
     <style>
-        /* Reset margins */
         * {
             margin: 0;
             padding: 0;
@@ -21,15 +20,12 @@
             justify-content: center;
             min-height: 100vh;
         }
-
         .main-container {
             width: 780px;
             max-width: 100%;
             margin: 0 auto;
             flex: 0 0 auto;
         }
-
-        /* Banner */
         .banner {
             width: 100%;
             height: 138px;
@@ -47,8 +43,6 @@
             display: block;
             max-width: 100%;
         }
-
-        /* Navigation menu - ПРОСТОЙ ТЕКСТ БЕЗ ЭФФЕКТОВ */
         .nav-menu {
             background-color: #8bc7ff;
             padding: 0;
@@ -62,13 +56,11 @@
             align-items: center;
             justify-content: space-between;
         }
-        
         .nav-left, .nav-right {
             display: flex;
             align-items: center;
             height: 100%;
         }
-        
         .nav-menu ul {
             list-style: none;
             display: flex;
@@ -77,7 +69,6 @@
             margin: 0;
             align-items: center;
         }
-        
         .nav-menu li {
             margin: 0;
             position: relative;
@@ -85,7 +76,6 @@
             display: flex;
             align-items: center;
         }
-        
         .nav-left li:not(:last-child)::after,
         .nav-right li:not(:last-child)::after {
             content: "|";
@@ -94,8 +84,6 @@
             color: rgba(0, 0, 0, 0.3);
             font-weight: normal;
         }
-        
-        /* Ссылка как простой текст без эффектов */
         .nav-menu a {
             color: #333;
             text-decoration: none;
@@ -107,21 +95,15 @@
             font-size: 13px;
             white-space: nowrap;
         }
-        
         .nav-left a {
             color: #333;
         }
-        
         .nav-right a {
             color: #0066cc;
         }
-        
-        /* БЕЗ ЭФФЕКТОВ ПРИ НАВЕДЕНИИ - ТОЛЬКО СТАНДАРТНЫЙ КУРСОР */
         .nav-menu a:hover {
             cursor: pointer;
         }
-
-        /* Alert bar */
         .alert-bar {
             background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
             padding: 8px 0;
@@ -139,8 +121,6 @@
             justify-content: center;
             color: #333;
         }
-
-        /* Main content box */
         .content-box {
             background-color: rgba(255, 255, 255, 0.98);
             padding: 25px;
@@ -154,42 +134,33 @@
             gap: 25px;
             align-items: flex-start;
         }
-
-        /* Left column with text */
         .text-content {
             flex: 1;
             min-width: 0;
         }
-
         .content-box h2 {
             font-size: 26px;
             margin-bottom: 12px;
             color: #3399ff;
         }
-        
         .content-box p {
             font-size: 15px;
             line-height: 1.5;
             margin-bottom: 10px;
         }
-        
         .content-box ul {
             margin-left: 18px;
             margin-bottom: 12px;
         }
-        
         .content-box li {
             margin-bottom: 6px;
             font-size: 15px;
         }
-
-        /* Right column with video */
         .video-column {
             width: 280px;
             height: 280px;
             flex-shrink: 0;
         }
-        
         .video-container {
             width: 100%;
             height: 100%;
@@ -198,15 +169,12 @@
             overflow: hidden;
             box-shadow: none;
         }
-        
         .video-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
-
-        /* Footer */
         .footer {
             height: 40px;
             margin-top: 15px;
@@ -217,142 +185,114 @@
             font-size: 13px;
             opacity: 0.9;
         }
-
-        /* Responsive styles */
         @media (min-width: 1000px) {
             body {
                 padding: 20px 0;
             }
-            
             .main-container {
                 width: 780px;
                 margin: 0;
             }
         }
-
         @media (max-width: 920px) {
             .main-container {
                 width: 100%;
                 padding: 0 15px;
             }
-            
             .content-box {
                 min-width: 0;
                 flex-direction: column;
                 padding: 20px;
             }
-            
             .video-column {
                 width: 100%;
                 height: 280px;
                 margin-top: 20px;
                 order: 2;
             }
-            
             .text-content {
                 order: 1;
             }
-            
             .nav-menu {
                 flex-direction: column;
                 height: auto;
                 min-height: 80px;
             }
-            
             .nav-left, .nav-right {
                 width: 100%;
                 justify-content: center;
                 height: 40px;
             }
-            
             .nav-left li:not(:last-child)::after,
             .nav-right li:not(:last-child)::after {
                 right: -5px;
             }
-            
             .nav-menu a {
                 padding: 0 10px;
                 font-size: 12px;
             }
-            
             @media (max-width: 600px) {
                 .nav-menu {
                     height: auto;
                     min-height: 120px;
                 }
-                
                 .nav-left ul, .nav-right ul {
                     flex-wrap: wrap;
                     justify-content: center;
                 }
-                
                 .nav-left li, .nav-right li {
                     margin: 3px 6px;
                 }
-                
                 .nav-left li::after,
                 .nav-right li::after {
                     display: none;
                 }
-                
                 .nav-menu a {
                     padding: 4px 8px;
                     font-size: 11px;
                 }
-                
                 .banner {
                     height: 110px;
                 }
-                
                 .content-box {
                     padding: 15px;
                 }
-                
                 .content-box h2 {
                     font-size: 22px;
                 }
-                
                 .content-box p, .content-box li {
                     font-size: 14px;
                 }
-                
                 .alert-bar {
                     font-size: 12px;
                     padding: 6px 5px;
                     height: 34px;
                 }
-                
                 .video-column {
                     height: 250px;
                 }
             }
-            
             @media (max-width: 400px) {
                 .nav-left ul, .nav-right ul {
                     flex-direction: column;
                     align-items: center;
                 }
-                
                 .nav-left li, .nav-right li {
                     margin: 2px 0;
                 }
-                
                 .alert-bar {
                     font-size: 11px;
                     height: auto;
                     min-height: 32px;
                     padding: 5px 4px;
                 }
-                
                 .banner {
                     height: 90px;
                 }
-                
                 .footer {
                     font-size: 11px;
                     height: 30px;
                 }
-                
                 .video-column {
                     height: 220px;
                 }
@@ -362,43 +302,11 @@
 </head>
 <body>
     <div class="main-container">
-        <!-- Header -->
-        <div class="banner">
-            <img src="bb.png" alt="Brick Space Banner">
-        </div>
-
-        <!-- Navigation -->
-        <nav class="nav-menu">
-            <div class="nav-left">
-                <ul>
-                    <li><a href="play.html">Play</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="#">Clans</a></li>
-                    <li><a href="#">Search</a></li>
-                    <li><a href="#">Forum</a></li>
-                    <li><a href="#">Membership</a></li>
-                </ul>
-            </div>
-            
-            <div class="nav-right">
-                <ul>
-                    <li><a href="#">Log in</a></li>
-                    <li><a href="#">Sign up</a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Alert bar - данные из конфига -->
-        <div class="alert-bar" id="alertBar">
-            <!-- Текст будет заменен из конфига -->
-        </div>
-
-        <!-- Main content -->
+        <div id="header-container"></div>
         <div class="content-box">
             <div class="text-content">
                 <h2>Welcome to Brick Space!</h2>
                 <p>Brick Space is a social platform where people can play together, build amazing structures, watch each other's creations, customize avatars, and have fun in a block-based universe!</p>
-                
                 <p><strong>What You Can Do:</strong></p>
                 <ul>
                     <li><strong>Play Together:</strong> Join multiplayer games with friends and other players</li>
@@ -408,10 +316,8 @@
                     <li><strong>Explore Worlds:</strong> Discover user-created worlds and adventures</li>
                     <li><strong>Share Creations:</strong> Show off your builds to the community</li>
                 </ul>
-                
                 <p>Start building and playing today! Join our growing community of creative builders!</p>
             </div>
-            
             <div class="video-column">
                 <div class="video-container">
                     <video id="myVideo" autoplay muted loop controls>
@@ -421,81 +327,77 @@
                 </div>
             </div>
         </div>
-
-        <!-- Footer - данные из конфига -->
-        <div class="footer" id="footer">
-            <!-- Текст будет заменен из конфига -->
-        </div>
+        <div id="footer-container"></div>
     </div>
-    
     <script src="config.js"></script>
     <script>
-        // Функция для загрузки конфигурации и применения настроек
-        function applyConfig() {
-            console.log('Loading configuration from config.js...');
-            
-            // Проверяем, загружен ли конфиг
-            if (typeof CONFIG === 'undefined') {
-                console.error('Config.js not loaded!');
-                return;
-            }
-            
-            // Применяем фоновый градиент из конфига
-            if (CONFIG.colors && CONFIG.colors.primaryGradient) {
-                document.body.style.background = `linear-gradient(135deg, ${CONFIG.colors.primaryGradient[0]} 0%, ${CONFIG.colors.primaryGradient[1]} 50%, ${CONFIG.colors.primaryGradient[2]} 100%)`;
-            }
-            
-            // Применяем настройки алерта из конфига
-            const alertBar = document.getElementById('alertBar');
-            if (alertBar && CONFIG.colors && CONFIG.colors.alertBackground) {
-                alertBar.style.background = `linear-gradient(90deg, ${CONFIG.colors.alertBackground[0]} 0%, ${CONFIG.colors.alertBackground[1]} 100%)`;
-                alertBar.textContent = CONFIG.alertText || '⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform';
-            }
-            
-            // Применяем настройки футера из конфига
-            const footer = document.getElementById('footer');
-            if (footer) {
-                footer.textContent = CONFIG.footerText || '© 2024 Brick Space | Social Building Platform | Beta Testing';
-                if (CONFIG.colors && CONFIG.colors.footerColor) {
-                    footer.style.color = CONFIG.colors.footerColor;
+        async function loadComponent(id, file) {
+            try {
+                const response = await fetch(file);
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (error) {
+                if (file === 'header.html') {
+                    document.getElementById(id).innerHTML = `
+                        <div class="banner"><img src="bb.png" alt="Brick Space Banner"></div>
+                        <nav class="nav-menu">
+                            <div class="nav-left">
+                                <ul>
+                                    <li><a href="index.html">Play</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="#">Clans</a></li>
+                                    <li><a href="#">Search</a></li>
+                                    <li><a href="#">Forum</a></li>
+                                    <li><a href="#">Membership</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-right">
+                                <ul>
+                                    <li><a href="#">Log in</a></li>
+                                    <li><a href="#">Sign up</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="alert-bar" id="alertBar">${CONFIG.alertText}</div>
+                    `;
+                } else if (file === 'footer.html') {
+                    document.getElementById(id).innerHTML = `<div class="footer" id="footer">${CONFIG.footerText}</div>`;
                 }
             }
-            
-            console.log('Configuration applied successfully');
         }
-
-        // Функция для управления видео
+        function applyConfig() {
+            document.body.style.background = `linear-gradient(135deg, ${CONFIG.colors.primaryGradient[0]} 0%, ${CONFIG.colors.primaryGradient[1]} 50%, ${CONFIG.colors.primaryGradient[2]} 100%)`;
+            const alertBar = document.getElementById('alertBar');
+            if (alertBar) {
+                alertBar.style.background = `linear-gradient(90deg, ${CONFIG.colors.alertBackground[0]} 0%, ${CONFIG.colors.alertBackground[1]} 100%)`;
+                alertBar.textContent = CONFIG.alertText;
+            }
+            const footer = document.getElementById('footer');
+            if (footer) {
+                footer.textContent = CONFIG.footerText;
+                footer.style.color = CONFIG.colors.footerColor;
+            }
+        }
         function setupVideo() {
             const video = document.getElementById('myVideo');
             if (video) {
                 video.autoplay = true;
                 video.muted = true;
                 video.loop = true;
-                
                 video.addEventListener('click', () => {
-                    if (video.paused) {
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
+                    if (video.paused) video.play();
+                    else video.pause();
                 });
             }
         }
-
-        // Основная функция инициализации
-        function initializePage() {
-            console.log('Initializing page...');
-            
-            // Применяем конфигурацию
-            applyConfig();
-            
-            // Настраиваем видео
-            setupVideo();
-            
-            console.log('Page initialized successfully');
+        async function initializePage() {
+            await loadComponent('header-container', 'header.html');
+            await loadComponent('footer-container', 'footer.html');
+            setTimeout(() => {
+                applyConfig();
+                setupVideo();
+            }, 100);
         }
-
-        // Запускаем инициализацию при загрузке страницы
         document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
