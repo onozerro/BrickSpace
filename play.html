@@ -268,9 +268,7 @@
                 const response = await fetch(file);
                 const html = await response.text();
                 document.getElementById(id).innerHTML = html;
-                console.log(`Loaded ${file} successfully`);
             } catch (error) {
-                console.error(`Error loading ${file}:`, error);
                 if (file === 'header.html') {
                     document.getElementById(id).innerHTML = `
                         <div class="banner"><img src="bb.png" alt="Brick Space Banner"></div>
@@ -294,43 +292,31 @@
                         </nav>
                         <div class="alert-bar" id="alertBar">${CONFIG.alertText}</div>
                     `;
-                    console.log('Created fallback header');
                 } else if (file === 'footer.html') {
-                    document.getElementById(id).innerHTML = `<div class="footer" id="footer">© 2024 Brick Space | Play Section | Under Development</div>`;
-                    console.log('Created fallback footer');
+                    document.getElementById(id).innerHTML = `<div class="footer" id="footer"></div>`;
                 }
             }
         }
         function applyConfig() {
-            console.log('Applying config...');
-            
-            if (CONFIG && CONFIG.colors && CONFIG.colors.primaryGradient) {
-                document.body.style.background = `linear-gradient(135deg, ${CONFIG.colors.primaryGradient[0]} 0%, ${CONFIG.colors.primaryGradient[1]} 50%, ${CONFIG.colors.primaryGradient[2]} 100%)`;
-                console.log('Background applied');
-            }
+            document.body.style.background = `linear-gradient(135deg, ${CONFIG.colors.primaryGradient[0]} 0%, ${CONFIG.colors.primaryGradient[1]} 50%, ${CONFIG.colors.primaryGradient[2]} 100%)`;
             
             const alertBar = document.getElementById('alertBar');
-            if (alertBar && CONFIG && CONFIG.colors && CONFIG.colors.alertBackground) {
+            if (alertBar) {
                 alertBar.style.background = `linear-gradient(90deg, ${CONFIG.colors.alertBackground[0]} 0%, ${CONFIG.colors.alertBackground[1]} 100%)`;
-                alertBar.textContent = CONFIG.alertText || '⚡ WELCOME TO BRICK SPACE BETA! | Creative building platform';
-                console.log('Alert bar applied');
+                alertBar.textContent = CONFIG.alertText;
             }
             
             const footer = document.getElementById('footer');
-            if (footer && CONFIG && CONFIG.colors) {
-                footer.style.color = CONFIG.colors.footerColor || 'white';
-                console.log('Footer color applied');
+            if (footer) {
+                footer.textContent = '© 2024 Brick Space | Play Section | Under Development';
+                footer.style.color = CONFIG.colors.footerColor;
             }
         }
         async function initializePage() {
-            console.log('Initializing play page...');
-            
             await loadComponent('header-container', 'header.html');
             await loadComponent('footer-container', 'footer.html');
-            
             setTimeout(() => {
                 applyConfig();
-                console.log('Play page initialized');
             }, 100);
         }
         document.addEventListener('DOMContentLoaded', initializePage);
