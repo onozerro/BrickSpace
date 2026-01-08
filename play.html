@@ -26,35 +26,127 @@
             margin: 0 auto;
             flex: 0 0 auto;
         }
+        .banner {
+            width: 100%;
+            height: 138px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            max-width: 100%;
+        }
+        .nav-menu {
+            background-color: #8bc7ff;
+            padding: 0;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-top: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+        .nav-menu li {
+            margin: 0;
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .nav-left li:not(:last-child)::after,
+        .nav-right li:not(:last-child)::after {
+            content: "|";
+            position: absolute;
+            right: -2px;
+            color: rgba(0, 0, 0, 0.3);
+            font-weight: normal;
+        }
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .nav-left a {
+            color: #333;
+        }
+        .nav-right a {
+            color: #0066cc;
+        }
+        .nav-menu a:hover {
+            cursor: pointer;
+        }
+        .alert-bar {
+            background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
+            padding: 8px 0;
+            text-align: center;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-top: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-weight: bold;
+            width: 100%;
+            font-size: 13px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
         .content-box {
             background-color: rgba(255, 255, 255, 0.98);
-            padding: 40px;
+            padding: 25px;
             border: 2px solid rgba(0, 0, 0, 0.1);
             border-top: none;
-            min-height: 400px;
+            min-height: 300px;
             margin-top: 0;
             width: 100%;
             min-width: 730px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
         }
+        .text-content {
+            max-width: 600px;
+        }
         .content-box h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            margin-bottom: 12px;
             color: #3399ff;
         }
         .content-box p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-        .construction-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 10px;
         }
         .footer {
             height: 40px;
@@ -66,8 +158,15 @@
             font-size: 13px;
             opacity: 0.9;
         }
-        
-        /* Адаптивность */
+        @media (min-width: 1000px) {
+            body {
+                padding: 20px 0;
+            }
+            .main-container {
+                width: 780px;
+                margin: 0;
+            }
+        }
         @media (max-width: 920px) {
             .main-container {
                 width: 100%;
@@ -75,7 +174,85 @@
             }
             .content-box {
                 min-width: 0;
-                padding: 30px 20px;
+                padding: 20px;
+            }
+            .nav-menu {
+                flex-direction: column;
+                height: auto;
+                min-height: 80px;
+            }
+            .nav-left, .nav-right {
+                width: 100%;
+                justify-content: center;
+                height: 40px;
+            }
+            .nav-left li:not(:last-child)::after,
+            .nav-right li:not(:last-child)::after {
+                right: -5px;
+            }
+            .nav-menu a {
+                padding: 0 10px;
+                font-size: 12px;
+            }
+            @media (max-width: 600px) {
+                .nav-menu {
+                    height: auto;
+                    min-height: 120px;
+                }
+                .nav-left ul, .nav-right ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .nav-left li, .nav-right li {
+                    margin: 3px 6px;
+                }
+                .nav-left li::after,
+                .nav-right li::after {
+                    display: none;
+                }
+                .nav-menu a {
+                    padding: 4px 8px;
+                    font-size: 11px;
+                }
+                .banner {
+                    height: 110px;
+                }
+                .content-box {
+                    padding: 15px;
+                }
+                .content-box h2 {
+                    font-size: 22px;
+                }
+                .content-box p {
+                    font-size: 14px;
+                }
+                .alert-bar {
+                    font-size: 12px;
+                    padding: 6px 5px;
+                    height: 34px;
+                }
+            }
+            @media (max-width: 400px) {
+                .nav-left ul, .nav-right ul {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .nav-left li, .nav-right li {
+                    margin: 2px 0;
+                }
+                .alert-bar {
+                    font-size: 11px;
+                    height: auto;
+                    min-height: 32px;
+                    padding: 5px 4px;
+                }
+                .banner {
+                    height: 90px;
+                }
+                .footer {
+                    font-size: 11px;
+                    height: 30px;
+                }
             }
         }
     </style>
@@ -83,37 +260,77 @@
 <body>
     <div class="main-container">
         <div id="header-container"></div>
-        
-        <!-- Контент страницы Play -->
         <div class="content-box">
-            <div class="construction-icon">🚧</div>
-            <h2>Play Page Under Construction</h2>
-            <p>We're working hard to bring you amazing gaming experiences! The play section is currently being developed and will be available soon.</p>
-            <p>Check back later to join multiplayer games, explore worlds, and play with friends in the Brick Space universe!</p>
+            <div class="text-content">
+                <h2>Play Page Under Construction</h2>
+                <p>This page is currently being developed. The play section where you can join multiplayer games, build together, and explore worlds is coming soon!</p>
+                <p>Please check back later for updates.</p>
+            </div>
         </div>
-        
         <div id="footer-container"></div>
     </div>
     
+    <script src="config.js"></script>
     <script>
-        // Подгрузка хедера и футера
-        fetch('header.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('header-container').innerHTML = html;
-            })
-            .catch(error => {
-                console.error('Error loading header:', error);
-            });
-            
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(html => {
-                document.getElementById('footer-container').innerHTML = html;
-            })
-            .catch(error => {
-                console.error('Error loading footer:', error);
-            });
+        async function loadComponent(id, file) {
+            try {
+                const response = await fetch(file);
+                const html = await response.text();
+                document.getElementById(id).innerHTML = html;
+            } catch (error) {
+                if (file === 'header.html') {
+                    document.getElementById(id).innerHTML = `
+                        <div class="banner"><img src="bb.png" alt="Brick Space Banner"></div>
+                        <nav class="nav-menu">
+                            <div class="nav-left">
+                                <ul>
+                                    <li><a href="index.html">Play</a></li>
+                                    <li><a href="play.html">Play</a></li>
+                                    <li><a href="shop.html">Shop</a></li>
+                                    <li><a href="#">Clans</a></li>
+                                    <li><a href="#">Search</a></li>
+                                    <li><a href="#">Forum</a></li>
+                                    <li><a href="#">Membership</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-right">
+                                <ul>
+                                    <li><a href="#">Log in</a></li>
+                                    <li><a href="#">Sign up</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="alert-bar" id="alertBar">${CONFIG.alertText}</div>
+                    `;
+                } else if (file === 'footer.html') {
+                    document.getElementById(id).innerHTML = `<div class="footer" id="footer">${CONFIG.footerText}</div>`;
+                }
+            }
+        }
+        
+        function applyConfig() {
+            document.body.style.background = `linear-gradient(135deg, ${CONFIG.colors.primaryGradient[0]} 0%, ${CONFIG.colors.primaryGradient[1]} 50%, ${CONFIG.colors.primaryGradient[2]} 100%)`;
+            const alertBar = document.getElementById('alertBar');
+            if (alertBar) {
+                alertBar.style.background = `linear-gradient(90deg, ${CONFIG.colors.alertBackground[0]} 0%, ${CONFIG.colors.alertBackground[1]} 100%)`;
+                alertBar.textContent = CONFIG.alertText;
+            }
+            const footer = document.getElementById('footer');
+            if (footer) {
+                footer.textContent = CONFIG.footerText;
+                footer.style.color = CONFIG.colors.footerColor;
+            }
+        }
+        
+        async function initializePage() {
+            await loadComponent('header-container', 'header.html');
+            await loadComponent('footer-container', 'footer.html');
+            setTimeout(() => {
+                applyConfig();
+            }, 100);
+        }
+        
+        document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
 </html>
