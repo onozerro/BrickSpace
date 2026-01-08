@@ -26,145 +26,35 @@
             margin: 0 auto;
             flex: 0 0 auto;
         }
-        .banner {
-            width: 100%;
-            height: 138px;
-            margin-top: 10px;
-            margin-bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-        }
-        .banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-            max-width: 100%;
-        }
-        .nav-menu {
-            background-color: #8bc7ff;
-            padding: 0;
-            border: 2px solid rgba(0, 0, 0, 0.15);
-            border-top: none;
-            margin-top: 0;
-            margin-bottom: 0;
-            width: 100%;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .nav-left, .nav-right {
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-        .nav-menu ul {
-            list-style: none;
-            display: flex;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-            align-items: center;
-        }
-        .nav-menu li {
-            margin: 0;
-            position: relative;
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-        .nav-left li:not(:last-child)::after,
-        .nav-right li:not(:last-child)::after {
-            content: "|";
-            position: absolute;
-            right: -2px;
-            color: rgba(0, 0, 0, 0.3);
-            font-weight: normal;
-        }
-        .nav-menu a {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0 12px;
-            display: flex;
-            align-items: center;
-            height: 100%;
-            font-size: 13px;
-            white-space: nowrap;
-        }
-        .nav-left a {
-            color: #333;
-        }
-        .nav-right a {
-            color: #0066cc;
-        }
-        .nav-menu a:hover {
-            cursor: pointer;
-        }
-        .alert-bar {
-            background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
-            padding: 8px 0;
-            text-align: center;
-            border: 2px solid rgba(0, 0, 0, 0.15);
-            border-top: none;
-            margin-top: 0;
-            margin-bottom: 0;
-            font-weight: bold;
-            width: 100%;
-            font-size: 13px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-        }
         .content-box {
             background-color: rgba(255, 255, 255, 0.98);
-            padding: 25px;
+            padding: 40px;
             border: 2px solid rgba(0, 0, 0, 0.1);
             border-top: none;
-            min-height: 300px;
+            min-height: 400px;
             margin-top: 0;
             width: 100%;
             min-width: 730px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
         .content-box h2 {
-            font-size: 26px;
+            font-size: 32px;
             margin-bottom: 20px;
             color: #3399ff;
         }
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+        .content-box p {
+            font-size: 18px;
+            line-height: 1.6;
             margin-bottom: 30px;
+            max-width: 600px;
         }
-        .game-card {
-            background: #f0f8ff;
-            border: 2px solid #8bc7ff;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-        .game-card h3 {
-            color: #0066cc;
-            margin-bottom: 10px;
-        }
-        .play-button {
-            background: #3399ff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .play-button:hover {
-            background: #1a8cff;
+        .construction-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
         }
         .footer {
             height: 40px;
@@ -185,95 +75,45 @@
             }
             .content-box {
                 min-width: 0;
-                padding: 20px;
-            }
-            .game-grid {
-                grid-template-columns: 1fr;
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="main-container">
-        <!-- Хедер -->
-        <div class="banner">
-            <img src="bb.png" alt="Brick Space Banner">
-        </div>
-        <nav class="nav-menu">
-            <div class="nav-left">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="play.html" style="color: #0066cc;">Play</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="#">Clans</a></li>
-                    <li><a href="#">Search</a></li>
-                    <li><a href="#">Forum</a></li>
-                </ul>
-            </div>
-            <div class="nav-right">
-                <ul>
-                    <li><a href="#">Log in</a></li>
-                    <li><a href="#">Sign up</a></li>
-                </ul>
-            </div>
-        </nav>
-        <div class="alert-bar">
-            Play now and join thousands of players online!
-        </div>
+        <div id="header-container"></div>
         
         <!-- Контент страницы Play -->
         <div class="content-box">
-            <h2>Choose Game Mode</h2>
-            
-            <div class="game-grid">
-                <div class="game-card">
-                    <h3>Creative Mode</h3>
-                    <p>Build anything you can imagine with unlimited blocks and resources.</p>
-                    <button class="play-button" onclick="playGame('creative')">Play Creative</button>
-                </div>
-                
-                <div class="game-card">
-                    <h3>Survival Mode</h3>
-                    <p>Gather resources, craft tools, and survive against monsters.</p>
-                    <button class="play-button" onclick="playGame('survival')">Play Survival</button>
-                </div>
-                
-                <div class="game-card">
-                    <h3>Multiplayer</h3>
-                    <p>Join friends or meet new players in online multiplayer worlds.</p>
-                    <button class="play-button" onclick="playGame('multiplayer')">Join Game</button>
-                </div>
-                
-                <div class="game-card">
-                    <h3>Mini Games</h3>
-                    <p>Quick fun games like parkour, PvP, and puzzle challenges.</p>
-                    <button class="play-button" onclick="playGame('minigames')">Play Mini Games</button>
-                </div>
-            </div>
-            
-            <h2>Quick Play</h2>
-            <p>Click below to instantly join a random game:</p>
-            <button class="play-button" style="padding: 15px 30px; font-size: 16px;" onclick="quickPlay()">
-                🎮 Quick Play Now
-            </button>
+            <div class="construction-icon">🚧</div>
+            <h2>Play Page Under Construction</h2>
+            <p>We're working hard to bring you amazing gaming experiences! The play section is currently being developed and will be available soon.</p>
+            <p>Check back later to join multiplayer games, explore worlds, and play with friends in the Brick Space universe!</p>
         </div>
         
-        <!-- Футер -->
-        <div class="footer">
-            © 2023 Brick Space. All rights reserved.
-        </div>
+        <div id="footer-container"></div>
     </div>
     
     <script>
-        function playGame(mode) {
-            alert(`Starting ${mode} game... (This would launch the game in a real implementation)`);
-            // Здесь будет реальный запуск игры
-        }
-        
-        function quickPlay() {
-            alert('Finding a game for you...');
-            // Здесь будет логика быстрого поиска игры
-        }
+        // Подгрузка хедера и футера
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+            });
+            
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading footer:', error);
+            });
     </script>
 </body>
 </html>
