@@ -329,38 +329,20 @@
         </div>
         <div id="footer-container"></div>
     </div>
+    
     <script>
-        function loadComponent(id, file) {
-            fetch(file)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById(id).innerHTML = html;
-                })
-                .catch(error => {
-                    console.error(`Error loading ${file}:`, error);
-                });
-        }
-        
-        function setupVideo() {
-            const video = document.getElementById('myVideo');
-            if (video) {
-                video.autoplay = true;
-                video.muted = true;
-                video.loop = true;
-                video.addEventListener('click', () => {
-                    if (video.paused) video.play();
-                    else video.pause();
-                });
-            }
-        }
-        
-        function initializePage() {
-            loadComponent('header-container', 'header.html');
-            loadComponent('footer-container', 'footer.html');
-            setupVideo();
-        }
-        
-        document.addEventListener('DOMContentLoaded', initializePage);
+        // Подгрузка хедера и футера
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('header-container').innerHTML = html;
+            });
+            
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('footer-container').innerHTML = html;
+            });
     </script>
 </body>
 </html>
