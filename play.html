@@ -26,6 +26,84 @@
             margin: 0 auto;
             flex: 0 0 auto;
         }
+        .banner {
+            width: 100%;
+            height: 138px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            max-width: 100%;
+        }
+        .nav-menu {
+            background-color: #8bc7ff;
+            padding: 0;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            border-top: none;
+            margin-top: 0;
+            margin-bottom: 0;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+        .nav-menu li {
+            margin: 0;
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .nav-left li:not(:last-child)::after,
+        .nav-right li:not(:last-child)::after {
+            content: "|";
+            position: absolute;
+            right: -2px;
+            color: rgba(0, 0, 0, 0.3);
+            font-weight: normal;
+        }
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        .nav-left a {
+            color: #333;
+        }
+        .nav-right a {
+            color: #0066cc;
+        }
+        .nav-menu a:hover {
+            cursor: pointer;
+        }
         .alert-bar {
             background: linear-gradient(90deg, #ffd966 0%, #ffcc33 100%);
             padding: 8px 0;
@@ -51,6 +129,7 @@
             min-height: 300px;
             margin-top: 0;
             width: 100%;
+            min-width: 730px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -60,14 +139,14 @@
             max-width: 600px;
         }
         .center-message h2 {
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 20px;
             color: #3399ff;
         }
         .center-message p {
-            font-size: 16px;
+            font-size: 18px;
             line-height: 1.6;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .footer {
             height: 40px;
@@ -77,6 +156,95 @@
             justify-content: center;
             color: white;
             font-size: 13px;
+            opacity: 0.9;
+        }
+        @media (max-width: 920px) {
+            .main-container {
+                width: 100%;
+                padding: 0 15px;
+            }
+            .content-box {
+                min-width: 0;
+                padding: 20px;
+            }
+            .nav-menu {
+                flex-direction: column;
+                height: auto;
+                min-height: 80px;
+            }
+            .nav-left, .nav-right {
+                width: 100%;
+                justify-content: center;
+                height: 40px;
+            }
+            .nav-left li:not(:last-child)::after,
+            .nav-right li:not(:last-child)::after {
+                right: -5px;
+            }
+            .nav-menu a {
+                padding: 0 10px;
+                font-size: 12px;
+            }
+            @media (max-width: 600px) {
+                .nav-menu {
+                    height: auto;
+                    min-height: 120px;
+                }
+                .nav-left ul, .nav-right ul {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .nav-left li, .nav-right li {
+                    margin: 3px 6px;
+                }
+                .nav-left li::after,
+                .nav-right li::after {
+                    display: none;
+                }
+                .nav-menu a {
+                    padding: 4px 8px;
+                    font-size: 11px;
+                }
+                .banner {
+                    height: 110px;
+                }
+                .content-box {
+                    padding: 15px;
+                }
+                .center-message h2 {
+                    font-size: 26px;
+                }
+                .center-message p {
+                    font-size: 16px;
+                }
+                .alert-bar {
+                    font-size: 12px;
+                    padding: 6px 5px;
+                    height: 34px;
+                }
+            }
+            @media (max-width: 400px) {
+                .nav-left ul, .nav-right ul {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .nav-left li, .nav-right li {
+                    margin: 2px 0;
+                }
+                .alert-bar {
+                    font-size: 11px;
+                    height: auto;
+                    min-height: 32px;
+                    padding: 5px 4px;
+                }
+                .banner {
+                    height: 90px;
+                }
+                .footer {
+                    font-size: 11px;
+                    height: 30px;
+                }
+            }
         }
     </style>
 </head>
@@ -93,45 +261,19 @@
         </div>
         <div id="footer-container"></div>
     </div>
-    <script src="config.js"></script>
     <script>
         async function loadComponent(id, file) {
             try {
                 const response = await fetch(file);
+                if (!response.ok) return;
                 const html = await response.text();
                 document.getElementById(id).innerHTML = html;
-            } catch (error) {
-                console.log('Error loading ' + file);
-            }
+            } catch (error) {}
         }
-        
-        function applyConfig() {
-            if (typeof CONFIG === 'undefined') return;
-            
-            if (CONFIG.colors && CONFIG.colors.primaryGradient) {
-                document.body.style.background = `linear-gradient(135deg, ${CONFIG.colors.primaryGradient[0]} 0%, ${CONFIG.colors.primaryGradient[1]} 50%, ${CONFIG.colors.primaryGradient[2]} 100%)`;
-            }
-            
-            const alertBar = document.getElementById('alertBar');
-            if (alertBar && CONFIG.colors && CONFIG.colors.alertBackground) {
-                alertBar.style.background = `linear-gradient(90deg, ${CONFIG.colors.alertBackground[0]} 0%, ${CONFIG.colors.alertBackground[1]} 100%)`;
-                if (CONFIG.alertText) {
-                    alertBar.textContent = CONFIG.alertText;
-                }
-            }
-            
-            const footer = document.getElementById('footer');
-            if (footer && CONFIG.colors && CONFIG.colors.footerColor) {
-                footer.style.color = CONFIG.colors.footerColor;
-            }
-        }
-        
         async function initializePage() {
             await loadComponent('header-container', 'header.html');
             await loadComponent('footer-container', 'footer.html');
-            setTimeout(applyConfig, 100);
         }
-        
         document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
